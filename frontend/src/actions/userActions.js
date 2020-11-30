@@ -1,7 +1,11 @@
 import axios from 'axios'
-import { USER_LOGIN_REQUEST } from '../constants/userConstants'
+import {
+  USER_LOGIN_FAIL,
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
+} from '../constants/userConstants'
 
-export const Login = (email, password) => async (dispatch) => {
+export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({
       type: USER_LOGIN_REQUEST,
@@ -20,8 +24,8 @@ export const Login = (email, password) => async (dispatch) => {
     )
 
     dispatch({
-      type: USER_LOGIN_REQUEST,
-      PAYLOAD: data,
+      type: USER_LOGIN_SUCCESS,
+      payload: data,
     })
 
     localStorage.setItem('userInfo', JSON.stringify(data))
